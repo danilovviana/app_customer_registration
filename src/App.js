@@ -5,6 +5,10 @@ import {
 } from "react-router-dom"
 
 import TemplateDefault from './templates/Default'
+import TemplatePage from './templates/Page'
+
+
+import Customers from './pages/Customers'
 import Home from './pages/Home'
 
 const App = () => {
@@ -15,7 +19,10 @@ const App = () => {
         <
         Routes >
         <
-        Route path = "/"
+        Route path = "/customers"
+        element = { < Customers / > }
+        /> <
+        Route path = "/Home"
         element = { < Home / > }
         /> <
         /Routes> <
