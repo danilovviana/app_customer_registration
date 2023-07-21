@@ -12,7 +12,7 @@ const theme = createTheme({
         primary: {
             main: blue[500],
         },
-        secondary: {
+        secundary: {
             main: pink[300],
         },
     },

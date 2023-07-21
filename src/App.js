@@ -5,7 +5,7 @@ import {
 } from "react-router-dom"
 
 import TemplateDefault from './templates/Default'
-import TemplatePage from './templates/Page'
+
 
 
 import Customers from './pages/Customers'
