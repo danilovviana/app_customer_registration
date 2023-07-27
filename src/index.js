@@ -1,11 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { pink, blue } from '@mui/material/colors'
 
 import App from './App'
 import './index.css'
-
-import { pink, blue } from '@mui/material/colors'
 
 const theme = createTheme({
     palette: {
@@ -17,6 +16,7 @@ const theme = createTheme({
         },
     },
 });
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'))

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { makeStyles } from '@mui/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import axios from 'axios'
-import CustomerCard from '../components/CustomerCards'
+import CustomerCard from '../../components/CustomerCards'
 import Grid from '@mui/material/Unstable_Grid2'
 
 const useStyles = makeStyles((theme) => ({
@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const Customers = () => {
+const List = () => {
     const classes = useStyles()
     const [customers, setCustomers] = useState([])
 
@@ -27,27 +27,38 @@ const Customers = () => {
             })
     }, [])
 
+    const handleRemoveCustomer = id => {
+        axios.delete(`https://reqres.in/api/users/2/${id}`)
+            .then(() => {
+                const newCustomersState = customers.filter(customer => customer.id !== id)
+
+                setCustomers(newCustomersState)
+            })
+    }
+
     return ( <
         >
         <
-        h1 > Customers < /h1> <
+        h1 > Lista de Clientes < /h1>  <
         Grid container > {
             customers.map(item => ( <
                 Grid item xs = { 12 }
                 md = { 4 } >
                 <
-                CustomerCard name = { item.first_name }
+                CustomerCard id = { item.id }
+                name = { item.first_name }
                 lastname = { item.last_name }
                 email = { item.email }
                 avatar = { item.avatar }
                 className = { classes.card }
-                /> <
+                onRemoveCustomer = { handleRemoveCustomer }
+                />  <
                 /Grid>    
             ))
         } <
-        /Grid>      <
+        /Grid>       <
         />
     )
 }
 
-export default Customers
+export default List

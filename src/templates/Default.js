@@ -1,11 +1,11 @@
 import Container from '@mui/material/Container'
-import { makeStyles } from '@mui/styles'
+import makeStyles from '@mui/styles/makeStyles'
 
 import Header from '../partials/Header/Header'
 
 const useStyles = makeStyles(() => ({
     container: {
-        padding: '15px 0'
+        padding: '50px 0'
     }
 }))
 

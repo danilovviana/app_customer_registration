@@ -1,27 +1,32 @@
 import * as React from 'react'
 import { useState } from 'react'
-import AppBar from '@mui/material/AppBar'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
-import IconButton from '@mui/material/IconButton'
-import Drawer from '@mui/material/Drawer'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemIcon from '@mui/material/ListItemIcon'
-import ListItemText from '@mui/material/ListItemText'
+
+import {
+    AppBar,
+    Toolbar,
+    Typography,
+    Button,
+    IconButton,
+    Drawer,
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+}
+from '@mui/material'
+
 import MenuIcon from '@mui/icons-material/Menu'
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded'
 import GroupAddRoundedIcon from '@mui/icons-material/GroupAddRounded'
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt'
 
+import { useNavigate } from 'react-router-dom'
 import useStyles from './Header.style'
-
-import { Link } from 'react-router-dom'
 
 const Header = () => {
     const classes = useStyles()
-    const history = Link
+    const navigate = useNavigate()
 
     const [menuOpen, setMenuOpen] = useState(false)
 
@@ -30,8 +35,8 @@ const Header = () => {
     }
 
     const handleMenuClick = route => {
-        history.push()
-        handleToggleMenu(route)
+        navigate(route)
+        handleToggleMenu()
     }
 
     return ( <
@@ -75,6 +80,19 @@ const Header = () => {
         /ListItem> <
         ListItem onClick = {
             () => handleMenuClick('/customers') } >
+        <
+        ListItemButton >
+        <
+        ListItemIcon >
+        <
+        PeopleAltIcon / >
+        <
+        /ListItemIcon> <
+        ListItemText > Lista de Clientes < /ListItemText> <
+        /ListItemButton> <
+        /ListItem> <
+        ListItem onClick = {
+            () => handleMenuClick('/customers/add') } >
         <
         ListItemButton >
         <

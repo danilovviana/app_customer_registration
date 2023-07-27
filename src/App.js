@@ -5,29 +5,35 @@ import {
 } from "react-router-dom"
 
 import TemplateDefault from './templates/Default'
+import TemplatePage from './templates/Page'
 
-
-
-import Customers from './pages/Customers'
+import CustomersList from './pages/customers/List'
+import CustomersRegister from './pages/customers/Register'
 import Home from './pages/Home'
 
 const App = () => {
     return ( <
-        TemplateDefault >
-        <
         Router >
+        <
+        TemplateDefault >
         <
         Routes >
         <
-        Route path = "/customers"
-        element = { < Customers / > }
+        Route path = "/Customers/add"
+        title = "Cadastro de clientes"
+        element = { < CustomersRegister / > }
+        />  <
+        Route path = "/Customers"
+        title = "Lista de clientes"
+        element = { < CustomersList / > }
         /> <
-        Route path = "/Home"
+        Route path = "/"
+        title = "Página inicial"
         element = { < Home / > }
         /> <
         /Routes> <
-        /Router> <
-        /TemplateDefault>
+        /TemplateDefault> <
+        /Router>
     )
 }
 

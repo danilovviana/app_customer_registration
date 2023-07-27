@@ -1,18 +1,21 @@
-import React from 'react'
-import { makeStyles } from '@mui/styles'
+import React, { useState } from 'react'
 import classNames from 'classnames'
+import makeStyles from '@mui/styles/makeStyles'
 
-import Card from '@mui/material/Card'
-import CardHeader from '@mui/material/CardHeader'
-import CardContent from '@mui/material/CardContent'
-import CardActions from '@mui/material/CardActions'
-import Avatar from '@mui/material/Avatar'
-import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
+import {
+    Card,
+    CardHeader,
+    CardContent,
+    CardActions,
+    Avatar,
+    IconButton,
+    Typography,
+} from '@mui/material'
 
+import EditIcon from '@mui/icons-material/Edit'
+import DeleteIcon from '@mui/icons-material/Delete'
 
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import ShareIcon from '@mui/icons-material/Share'
+import ModalConfirm from './ModalConfirm'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,15 +26,36 @@ const useStyles = makeStyles((theme) => ({
 
 
 const CustomerCard = ({
+    id,
     name,
     lastname,
     email,
     avatar,
     className,
+    onRemoveCustomer,
 }) => {
+
     const classes = useStyles()
 
+    const [openModal, setOpenModal] = useState(false)
+
+    const handleToggleOpenModal = () => {
+        setOpenModal(!openModal)
+    }
+
+    const handleConfirmModal = () => {
+        onRemoveCustomer(id)
+        handleToggleOpenModal()
+    }
+
+    const handleRemoveCustomer = () => {
+        handleToggleOpenModal()
+    }
+
+
     return ( <
+        >
+        <
         Card className = { classNames(className, classes.root) } >
         <
         CardHeader avatar = { <
@@ -41,29 +65,38 @@ const CustomerCard = ({
         }
         title = { `${name} ${lastname}` }
         subheader = { email }
-        /> <
+        />  <
         CardContent >
         <
         Typography variant = "body2"
         color = "text.secondary" >
         This impressive paella is a perfect party dish and a fun meal to cook together with your guests.Add 1 cup of frozen peas along with the mussels,
         if you like. <
-        /Typography> <
+        /Typography>  <
         /CardContent> <
         CardActions >
         <
         IconButton >
         <
-        FavoriteIcon / >
+        EditIcon / >
         <
         /IconButton> <
-        IconButton >
+        IconButton onClick = { handleRemoveCustomer } >
         <
-        ShareIcon / >
+        DeleteIcon / >
         <
-        /IconButton> <
-        /CardActions> <
-        /Card>
+        /IconButton>  <
+        /CardActions>  <
+        /Card> <
+        ModalConfirm open = { openModal }
+        onClose = { handleToggleOpenModal }
+        onConfirm = {
+            () => handleConfirmModal(id) }
+        title = "Deseja realmente excluir este cadastro?"
+        message = "Ao confirmar, o cadastro será excluído totalmente." /
+        >
+        <
+        />
     )
 }
 

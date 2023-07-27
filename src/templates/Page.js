@@ -1,5 +1,5 @@
 import Typography from '@mui/material/Typography'
-import { makeStyles } from '@mui/styles'
+import makeStyles from '@mui/styles/makeStyles'
 
 const useStyles = makeStyles(() => ({
     container: {
@@ -13,7 +13,8 @@ const Page = ({ title, Component }) => {
     return ( <
         >
         <
-        Typography variant = "h2" > { title } <
+        Typography variant = "poster"
+        className = { classes.container } > { title } <
         /Typography> <
         Component / >
         <
