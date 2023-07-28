@@ -33,6 +33,7 @@ const CustomerCard = ({
     avatar,
     className,
     onRemoveCustomer,
+    onEditCustomer,
 }) => {
 
     const classes = useStyles()
@@ -50,6 +51,10 @@ const CustomerCard = ({
 
     const handleRemoveCustomer = () => {
         handleToggleOpenModal()
+    }
+
+    const handleEditCustomer = id => {
+        onEditCustomer()
     }
 
 
@@ -76,7 +81,8 @@ const CustomerCard = ({
         /CardContent> <
         CardActions >
         <
-        IconButton >
+        IconButton onClick = {
+            () => handleEditCustomer(id) } >
         <
         EditIcon / >
         <

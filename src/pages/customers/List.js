@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import makeStyles from '@mui/styles/makeStyles'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+
 import CustomerCard from '../../components/CustomerCards'
 import Grid from '@mui/material/Unstable_Grid2'
 
@@ -16,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 const List = () => {
     const classes = useStyles()
+    const navigate = useNavigate()
     const [customers, setCustomers] = useState([])
 
     useEffect(() => {
@@ -36,6 +39,10 @@ const List = () => {
             })
     }
 
+    const handleEditCustomer = id => {
+        navigate(`/customers/edit/${id}`)
+    }
+
     return ( <
         >
         <
@@ -52,6 +59,7 @@ const List = () => {
                 avatar = { item.avatar }
                 className = { classes.card }
                 onRemoveCustomer = { handleRemoveCustomer }
+                onEditCustomer = { handleEditCustomer }
                 />  <
                 /Grid>    
             ))
